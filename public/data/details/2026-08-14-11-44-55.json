@@ -1,0 +1,32 @@
+{
+ "id": "2026-08-14-11-44-55",
+ "date": "2026-08-14",
+ "time": "11:44",
+ "profile": "morning",
+ "title": "AI4S前瞻研判报告（8.14）",
+ "lead": "NASA 加入 Genesis Mission，将用 AI 分析超 150PB 历史任务数据；Google 发布 Gemini 3.7 Flash，API 临时降价 50%，DeepSWE 得分 65.3%；诺和诺德选择 AWS 为战略 AI 伙伴，启动伦敦创新中心加速药物发现。",
+ "highlights": [
+  "NASA 加入 Genesis Mission，用 AI 分析 150PB 历史数据",
+  "Google 发布 Gemini 3.7 Flash，API 临时降价 50%",
+  "诺和诺德选 AWS 为战略 AI 伙伴，启动伦敦创新中心"
+ ],
+ "sourceCount": 0,
+ "totalEntries": 0,
+ "sections": [
+  {
+   "key": "overview",
+   "title": "总览",
+   "markdown": "## 总览\n\n- **高能物理与量子科技**：Infleqtion 获 Eaton 选中，研究量子计算提升美国电网韧性，属 Genesis Mission。\n- **地球科学**：NASA 加入 Genesis Mission，用 AI 分析超 150PB 历史数据；美国内政部发布 USGS 煤炭资源报告。\n- **化学与材料**：Science Advances 报道描述符引导迁移学习解码快离子导体；Nature Reviews Materials 强调自主实验室需适配结构表征；ACS 综述展示第一性原理混合建模。\n- **生命科学与医学**：诺和诺德与 AWS 达成 AI 药物发现合作，启动伦敦创新中心；Nature Biotech 发表细胞表面展示元件与 CRBN 相互作用组研究；Derek Lowe 评估 AI 药物发现进展有限。\n- **科学通用底座**：Eric Schmidt 称 AI4S 需要推理与 AI 代理；ELLIS 参与 AIS26；Transformer Lab 发布 Primus AI 科学家；Nature 称 AI 尚不能自主研究。\n- **通用 AI**：Google 发布 Gemini 3.7 Flash，API 临时降价 50%，DeepSWE 得 65.3%。"
+  },
+  {
+   "key": "insights",
+   "title": "今日洞察",
+   "markdown": "## 今日洞察\n\nNASA 把 150PB 老数据放进 Genesis Mission，Eric Schmidt 同时发文强调 AI4S 需要推理能力。两者指向同一个判断：科学数据的瓶颈已经落在“把存量数据变成可推理对象”，主要约束是检索、标注、验证这些工程层，而非模型规模。谁先把这条管线做对，谁就拿到科学发现的第一作者权。\n\nTransformer Lab 发布 Primus，声称能自动产出论文；Nature 同场评论 AI 尚不能自主研究；MIT Tech Review 报道 AI 教授开始协商新的学术规则。AI Scientist 已进入产品化和制度博弈阶段，但评价体系没有跟上。能建立可信验证闭环的机构是主要受益者；只看论文产量的团队会进一步污染文献。\n\n诺和诺德选 AWS 为战略 AI 伙伴，使用 Amazon Bio Discovery 并启动伦敦创新中心；Derek Lowe 同时提醒 AI 药物发现尚未证明自己。制药巨头押注的不是某个明星模型，而是云厂商的数据与合规基础设施。AI 药物发现的商业入口正在由超大规模云平台接管，模型创业公司必须找到不依赖云管道的差异化环节。"
+  },
+  {
+   "key": "gaps",
+   "title": "问题发现",
+   "markdown": "## 问题发现\n\n### 1. 自主研究系统的产出缺乏\"可独立验证性\"评测协议（评测缺口）\n- **为什么可能成立**：今日 Nature 评论明确称\"AI isn't ready to research itself\"，而同期 Transformer Lab 推出 Primus 声称可自动产出论文，两则信号碰撞指向同一空白：现有 AI Scientist 类系统缺少对\"发现本身\"是否可验证的客观评测。\n- **现有工作为何没覆盖**：Sakana 的 AI Scientist 等已有系统多停留在论文生成、模拟审稿层面，真实实验复现闭环成本高、无人牵头；Nature 评论只指出系统有限性，并未提出可操作评测标准，瓶颈在评测层。\n- **可切入的小问题**：设计一个最小协议，让 AI Scientist 在公开数据集上输出可执行假设与实验方案，再以独立盲审判断其是否混淆训练/测试信息、是否可被简单复现，先替代完整的物理验证。\n\n### 2. 自主实验室中结构表征策略的\"适配决策\"缺乏模型化（待进一步核实的潜在切入点）\n- **为什么可能成立**：今日 Nature Reviews Materials 评论专门强调\"fit-for-purpose structure characterization\"——说明自主实验室闭环里表征工具选择已成为被点名的未被系统解决的问题。\n- **现有工作为何没覆盖**：自主实验室多数框架将表征环节视作固定黑箱，聚焦优化合成条件，而\"当前候选材料该选哪种表征手段、信息增益如何\"仍靠人工直觉，并未纳入主动学习目标，瓶颈在方法层。\n- **可切入的小问题**：在模拟自主实验循环中，比较固定表征协议与基于不确定性驱动的表征选择策略（如用预测方差决定是否追加表征）在相同实验预算下的材料发现效率。"
+  }
+ ]
+}
