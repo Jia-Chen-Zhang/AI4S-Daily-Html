@@ -1,13 +1,5 @@
 [
  {
-  "report_id": "2026-08-14-11-44-55",
-  "date": "2026-08-14",
-  "time": "11:44",
-  "profile": "morning",
-  "title": "总览",
-  "markdown": "- **高能物理与量子科技**：Infleqtion 获 Eaton 选中，研究量子计算提升美国电网韧性，属 Genesis Mission。\n- **地球科学**：NASA 加入 Genesis Mission，用 AI 分析超 150PB 历史数据；美国内政部发布 USGS 煤炭资源报告。\n- **化学与材料**：Science Advances 报道描述符引导迁移学习解码快离子导体；Nature Reviews Materials 强调自主实验室需适配结构表征；ACS 综述展示第一性原理混合建模。\n- **生命科学与医学**：诺和诺德与 AWS 达成 AI 药物发现合作，启动伦敦创新中心；Nature Biotech 发表细胞表面展示元件与 CRBN 相互作用组研究；Derek Lowe 评估 AI 药物发现进展有限。\n- **科学通用底座**：Eric Schmidt 称 AI4S 需要推理与 AI 代理；ELLIS 参与 AIS26；Transformer Lab 发布 Primus AI 科学家；Nature 称 AI 尚不能自主研究。\n- **通用 AI**：Google 发布 Gemini 3.7 Flash，API 临时降价 50%，DeepSWE 得 65.3%。"
- },
- {
   "report_id": "2026-08-14-09-58-18",
   "date": "2026-08-14",
   "time": "09:58",

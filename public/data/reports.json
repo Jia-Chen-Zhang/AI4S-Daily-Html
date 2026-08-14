@@ -1,25 +1,5 @@
 [
  {
-  "id": "2026-08-14-11-44-55",
-  "date": "2026-08-14",
-  "time": "11:44",
-  "profile": "morning",
-  "title": "AI4S前瞻研判报告（8.14）",
-  "lead": "NASA 加入 Genesis Mission，将用 AI 分析超 150PB 历史任务数据；Google 发布 Gemini 3.7 Flash，API 临时降价 50%，DeepSWE 得分 65.3%；诺和诺德选择 AWS 为战略 AI 伙伴，启动伦敦创新中心加速药物发现。",
-  "highlights": [
-   "NASA 加入 Genesis Mission，用 AI 分析 150PB 历史数据",
-   "Google 发布 Gemini 3.7 Flash，API 临时降价 50%",
-   "诺和诺德选 AWS 为战略 AI 伙伴，启动伦敦创新中心"
-  ],
-  "sourceCount": 0,
-  "totalEntries": 0,
-  "sections": [
-   "overview",
-   "insights",
-   "gaps"
-  ]
- },
- {
   "id": "2026-08-14-09-58-18",
   "date": "2026-08-14",
   "time": "09:58",
@@ -32,6 +12,7 @@
   "sections": [
    "overview",
    "insights",
+   "relevance",
    "gaps",
    "rss",
    "hackernews"

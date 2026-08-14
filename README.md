@@ -3,8 +3,8 @@
 AI4S 每日资讯报告的公开归档站点，纯静态（Vue 3 + Vite + Tailwind），托管于 GitHub Pages。
 数据来自主系统（ai-daily）每日生成的报告，经 `scripts/export.py` 导出为 JSON 随仓库提交。
 
-**隐私边界**：仅包含公开报告内容（总览 / 今日洞察 / 问题发现 / 今日热点 / Hacker News）。
-「与当前工作的相关性」板块与工作文档**不导出**，只保留在本机完整版中。
+**隐私边界**：包含报告全部板块（总览 / 今日洞察 / 与当前工作的相关性 / 问题发现 / 今日热点 / Hacker News）。
+工作文档（ongoing_work/）**不导出**，只保留在本机完整版中。
 
 ## 首次部署到 GitHub Pages
 
@@ -48,11 +48,11 @@ npm run build    # 构建到 dist/
 ## 目录结构
 
 ```
-├── src/                    # Vue 3 前端(归档列表 / 报告详情 / 五个栏目流)
+├── src/                    # Vue 3 前端(归档列表 / 报告详情 / 六个栏目流)
 ├── public/data/            # 导出的静态 JSON(提交到仓库)
 │   ├── reports.json        #   报告摘要列表
-│   ├── details/{id}.json   #   报告详情(板块数组,已剔除 relevance)
-│   └── sections/{key}.json #   栏目流(overview/insights/gaps/rss/hackernews)
+│   ├── details/{id}.json   #   报告详情(板块数组)
+│   └── sections/{key}.json #   栏目流(overview/insights/relevance/gaps/rss/hackernews)
 ├── scripts/export.py       # news-data → public/data 导出(自包含,仅依赖 pyyaml)
 ├── scripts/publish.sh      # 导出 + git commit + push
 └── .github/workflows/      # Pages 自动构建部署

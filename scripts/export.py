@@ -4,9 +4,7 @@
 从主仓库的 news-data/push-*.md 解析报告,导出为本仓库 public/data/ 下的静态 JSON:
   reports.json            报告摘要列表(时间倒序)
   details/{id}.json       报告详情(板块数组)
-  sections/{key}.json     栏目流(overview/insights/gaps/rss/hackernews)
-
-安全边界:relevance(与当前工作的相关性)板块涉及内部工作方向,一律不导出。
+  sections/{key}.json     栏目流(overview/insights/relevance/gaps/rss/hackernews)
 
 自包含实现(仅依赖 pyyaml),解析逻辑与主仓库 src/web/reports.py 保持一致。
 在主仓库根目录执行:  uv run python gitweb/scripts/export.py
@@ -30,10 +28,8 @@ DEFAULT_OUT = GITWEB_ROOT / "public" / "data"
 
 # 板块顺序与主仓库 storage._SECTION_ORDER 一致
 _SECTION_ORDER = ("insights", "relevance", "gaps", "rss", "hackernews")
-# 敏感板块,不导出
-_EXCLUDED_KEYS = {"relevance"}
 # 栏目流 key
-STREAM_KEYS = ("overview", "insights", "gaps", "rss", "hackernews")
+STREAM_KEYS = ("overview", "insights", "relevance", "gaps", "rss", "hackernews")
 
 _REPORT_FILE_RE = re.compile(r"^push-(\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2})\.md$")
 _H1_RE = re.compile(r"^#\s+(.+)$", re.M)
@@ -42,6 +38,7 @@ _H2_RE = re.compile(r"^##\s+(.+)$", re.M)
 SECTION_TITLE_FALLBACK = {
     "overview": "总览",
     "insights": "今日洞察",
+    "relevance": "与当前工作的相关性",
     "gaps": "问题发现",
     "rss": "今日Top热点",
     "hackernews": "Hacker News 热议",
@@ -110,8 +107,6 @@ def _split_insights(md: str):
 def split_sections(body: str):
     sections = []
     for key in _SECTION_ORDER:
-        if key in _EXCLUDED_KEYS:
-            continue  # 敏感板块不导出
         md = extract_section(body, key)
         if not md.strip():
             continue

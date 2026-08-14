@@ -1,80 +1,40 @@
-import type {
-  ReportDetail,
-  ReportSummary,
-  SectionEntry,
-  Settings,
-  WorkDocContent,
-  WorkDocMeta,
-} from '../types'
+import type { ReportDetail, ReportSummary, SectionEntry } from '../types'
 
-const BASE = '/api'
+// 静态数据源:GitHub Pages 无后端,直接读构建时导出的 JSON
+// (由 scripts/export.py 生成到 public/data/,随仓库提交)
+const BASE = 'data'
 
-async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const resp = await fetch(`${BASE}${path}`, init)
+async function request<T>(path: string): Promise<T> {
+  const resp = await fetch(`${BASE}/${path}`)
   if (!resp.ok) {
-    let detail = `请求失败: ${resp.status}`
-    try {
-      const body = await resp.json()
-      if (body?.detail) detail = body.detail
-    } catch {
-      /* 非 JSON 错误体,用默认信息 */
-    }
-    throw new Error(detail)
+    throw new Error(`请求失败: ${resp.status}`)
   }
-  if (resp.status === 204) return undefined as T
   return resp.json() as Promise<T>
 }
 
 export function listReports(): Promise<ReportSummary[]> {
-  return request<ReportSummary[]>('/reports?limit=200')
+  return request<ReportSummary[]>('reports.json')
 }
 
 export function getReport(id: string): Promise<ReportDetail> {
-  return request<ReportDetail>(`/reports/${encodeURIComponent(id)}`)
+  return request<ReportDetail>(`details/${encodeURIComponent(id)}.json`)
 }
 
-export function getSectionStream(
+// 栏目流 JSON 一次性导出全量,前端本地分页
+const sectionCache = new Map<string, Promise<SectionEntry[]>>()
+
+function loadSection(key: string): Promise<SectionEntry[]> {
+  if (!sectionCache.has(key)) {
+    sectionCache.set(key, request<SectionEntry[]>(`sections/${key}.json`))
+  }
+  return sectionCache.get(key)!
+}
+
+export async function getSectionStream(
   key: string,
   limit = 30,
   offset = 0,
 ): Promise<SectionEntry[]> {
-  return request<SectionEntry[]>(`/sections/${key}?limit=${limit}&offset=${offset}`)
-}
-
-// ─── 当前工作维护 ───
-
-export function listWorkDocs(): Promise<WorkDocMeta[]> {
-  return request<WorkDocMeta[]>('/workdocs')
-}
-
-export function getWorkDoc(name: string): Promise<WorkDocContent> {
-  return request<WorkDocContent>(`/workdocs/${encodeURIComponent(name)}`)
-}
-
-export function uploadWorkDoc(file: File): Promise<void> {
-  return request<void>(`/workdocs/${encodeURIComponent(file.name)}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/octet-stream' },
-    body: file,
-  })
-}
-
-export function deleteWorkDoc(name: string): Promise<void> {
-  return request<void>(`/workdocs/${encodeURIComponent(name)}`, {
-    method: 'DELETE',
-  })
-}
-
-// ─── 设置 ───
-
-export function getSettings(): Promise<Settings> {
-  return request<Settings>('/settings')
-}
-
-export function saveSettings(model: string): Promise<Settings> {
-  return request<Settings>('/settings', {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model }),
-  })
+  const all = await loadSection(key)
+  return all.slice(offset, offset + limit)
 }
