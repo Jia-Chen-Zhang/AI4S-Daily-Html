@@ -29,3 +29,21 @@ export interface SectionEntry {
   title: string
   markdown: string
 }
+
+export interface WorkDocMeta {
+  name: string
+  ext: string
+  size: number
+  modified: string
+}
+
+export interface WorkDocContent {
+  name: string
+  ext: string
+  text: string
+}
+
+export interface Settings {
+  model: string
+  defaultModel: string
+}

@@ -10,6 +10,7 @@ export interface SectionNavItem {
 export const SECTIONS: SectionNavItem[] = [
   { key: 'overview', label: '总览', short: '总览', icon: '📋' },
   { key: 'insights', label: '今日洞察', short: '洞察', icon: '💡' },
+  { key: 'relevance', label: '与当前工作的相关性', short: '相关性', icon: '🧭' },
   { key: 'gaps', label: '问题发现', short: '问题发现', icon: '🔬' },
   { key: 'rss', label: '今日热点', short: 'Top热点', icon: '📰' },
   { key: 'hackernews', label: 'Hacker News 热议', short: 'HN', icon: '🟧' },

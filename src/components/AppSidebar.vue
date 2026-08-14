@@ -40,6 +40,19 @@ import ThemeToggle from './ThemeToggle.vue'
       <div class="mx-3 my-3 border-t border-stone-200 dark:border-stone-800" />
 
       <router-link
+        to="/workdocs"
+        class="mb-0.5 flex items-center gap-2.5 rounded px-3 py-2 text-sm transition-colors"
+        :class="
+          $route.path.startsWith('/workdocs')
+            ? 'bg-accent/10 font-semibold text-accent'
+            : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-100'
+        "
+      >
+        <span aria-hidden="true">🛠️</span>
+        当前工作维护
+      </router-link>
+
+      <router-link
         to="/archive"
         class="mb-0.5 flex items-center gap-2.5 rounded px-3 py-2 text-sm transition-colors"
         :class="
@@ -52,6 +65,18 @@ import ThemeToggle from './ThemeToggle.vue'
         每日研判归档
       </router-link>
 
+      <router-link
+        to="/settings"
+        class="flex items-center gap-2.5 rounded px-3 py-2 text-sm transition-colors"
+        :class="
+          $route.path.startsWith('/settings')
+            ? 'bg-accent/10 font-semibold text-accent'
+            : 'text-stone-600 hover:bg-stone-100 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800 dark:hover:text-stone-100'
+        "
+      >
+        <span aria-hidden="true">⚙️</span>
+        设置
+      </router-link>
     </nav>
 
     <div class="border-t border-stone-200 px-6 py-4 dark:border-stone-800">
@@ -87,6 +112,17 @@ import ThemeToggle from './ThemeToggle.vue'
         {{ sec.icon }} {{ sec.label }}
       </router-link>
       <router-link
+        to="/workdocs"
+        class="shrink-0 rounded-full px-3 py-1 text-xs transition-colors"
+        :class="
+          $route.path.startsWith('/workdocs')
+            ? 'bg-accent/10 font-semibold text-accent'
+            : 'text-stone-500 dark:text-stone-400'
+        "
+      >
+        🛠️ 工作
+      </router-link>
+      <router-link
         to="/archive"
         class="shrink-0 rounded-full px-3 py-1 text-xs transition-colors"
         :class="
@@ -96,6 +132,17 @@ import ThemeToggle from './ThemeToggle.vue'
         "
       >
         🗞️ 归档
+      </router-link>
+      <router-link
+        to="/settings"
+        class="shrink-0 rounded-full px-3 py-1 text-xs transition-colors"
+        :class="
+          $route.path.startsWith('/settings')
+            ? 'bg-accent/10 font-semibold text-accent'
+            : 'text-stone-500 dark:text-stone-400'
+        "
+      >
+        ⚙️ 设置
       </router-link>
     </nav>
   </div>

@@ -1,5 +1,28 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import AppSidebar from './components/AppSidebar.vue'
+import { SECTION_LABEL } from './sections'
+
+const route = useRoute()
+
+// 页脚小字随当前页面变化:栏目页用栏目全名(如"与当前工作的相关性"),其余页面用页面名
+const pageName = computed(() => {
+  if (route.name === 'section') {
+    return SECTION_LABEL[String(route.params.key)] ?? '每日研判'
+  }
+  switch (route.name) {
+    case 'workdocs':
+      return '当前工作维护'
+    case 'list':
+    case 'detail':
+      return '研判归档'
+    case 'settings':
+      return '设置'
+    default:
+      return '每日研判'
+  }
+})
 </script>
 
 <template>
@@ -12,7 +35,7 @@ import AppSidebar from './components/AppSidebar.vue'
       <footer
         class="border-t border-stone-200 py-6 text-center text-xs text-stone-400 dark:border-stone-800 dark:text-stone-600"
       >
-        AI4S 每日研判 · 归档 — 由 AI 每日资讯推送系统生成
+        {{ pageName }} — AI4S日报
       </footer>
     </div>
   </div>
